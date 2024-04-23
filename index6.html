@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -89,7 +89,7 @@
     <div id="all">
         <div id="calculadora">
             <div id="resultado">
-                <input type="text" disabled value="0">
+                <input type="text" disabled placeholder="0" maxlength="8">
             </div>
             <div id="rows">
                     <button onclick="roberto('c')" id="c" class="double">C</button>
@@ -116,23 +116,175 @@
 
     <script>
         let input = document.querySelector('input');
-        let n1
-        let n2
-        let acao
+        let n1 = '';
+        let n2 = '';
+        let acao= '';
+        let qp = 0;
+        let maisq8 = 0;
+        let q0 = 0;
+
         function roberto(funcao){ 
+            if(input.value.length >= 14){
+                maisq8 = 1;
+            }
+
             switch(funcao){
                 case "c":
                     input.value = "";
+                    acao = '';
+                    qp = 0;
+                    maisq8 = 0;
+                    q0 = 0;
                     break;
                 case '/':
-                    if (n1 == ''){
-                        console.log('gay');
-                        break;
-                    } else {
-                        acao = 'divisao'
+                    if(!isNaN(parseFloat(input.value))){
+                        n1 = parseFloat(input.value);
+                        if (acao == ''){
+                            acao = 'divisão';
+                            input.value = '';
+                            maisq8 = 0;
+                            if (qp == 1 || q0 == 1){
+                                qp = 0;
+                                q0 = 0;
+                            }
+                        }
+                        console.log(n1)
                     }
+                    break;
                 case 'x':
-
+                    if(!isNaN(parseFloat(input.value))){
+                        n1 = parseFloat(input.value);
+                        if (acao == ''){
+                            acao = 'multiplicacao';
+                            input.value = '';
+                            maisq8 = 0;
+                            if (qp == 1 || q0 == 1){
+                                qp = 0;
+                                q0 = 0;
+                            }
+                        }
+                        console.log(n1)
+                    }
+                    break;
+                case '-':
+                    if(!isNaN(parseFloat(input.value))){
+                        n1 = parseFloat(input.value);
+                        if (acao == ''){
+                            acao = 'menos';
+                            input.value = '';
+                            maisq8 = 0;
+                            if (qp == 1 || q0 == 1){
+                                qp = 0;
+                                q0 = 0;
+                            }
+                        }
+                        console.log(n1)
+                    }
+                    break;
+                case '+':
+                    if(!isNaN(parseFloat(input.value))){
+                        n1 = parseFloat(input.value);
+                        if (acao == ''){
+                            acao = 'mais';
+                            input.value = '';
+                            maisq8 = 0;
+                            if (qp == 1 || q0 == 1){
+                                qp = 0;
+                                q0 = 0;
+                            }
+                        }
+                        console.log(n1)
+                    }
+                    break;
+                case '.':
+                    if (qp == 0 && input.value == ''){
+                        input.value += '0' + '.';
+                        qp += 1;
+                    }
+                    if(qp == 0 && parseFloat(input.value) == '0'){
+                        input.value += '.';
+                        qp += 1;
+                    }
+                    break;
+                case '0':
+                    if((parseFloat(input.value) > 0 && maisq8 == 0) || (qp == 1 && maisq8 == 0)){
+                        input.value += '0';
+                    }
+                    else if(isNaN(parseFloat(input.value))){
+                        input.value += '0';
+                        q0 = 1;
+                    }
+                    break;
+                case '1':
+                    if(maisq8 == 0){
+                        input.value += '1';
+                    }
+                    break;
+                case '2':
+                    if(maisq8 == 0){
+                        input.value += '2';
+                    }
+                    break;
+                case '3':
+                    if(maisq8 == 0){
+                        input.value += '3';
+                    }
+                    break;
+                case '4':
+                    if(maisq8 == 0){
+                        input.value += '4';
+                    }
+                    break;
+                case '5':
+                    if(maisq8 == 0){
+                        input.value += '5';
+                    }
+                    break;
+                case '6':
+                    if(maisq8 == 0){
+                        input.value += '6';
+                    }
+                    break;
+                case '7':
+                    if(maisq8 == 0){
+                        input.value += '7';
+                    }
+                    break;
+                case '8':
+                    if(maisq8 == 0){
+                        input.value += '8';
+                    }
+                    break;
+                case '9':
+                    if(maisq8 == 0){
+                        input.value += '9';
+                    }
+                    break;
+                case '=':
+                    if(acao != '' && !isNaN(parseFloat(input.value))){
+                        n2 = parseFloat(input.value);
+                        console.log(n2)
+                        switch(acao){
+                            case('divisão'):
+                                let r_soma = n1 / n2;
+                                input.value = r_soma;
+                                break;
+                            case('multiplicacao'):
+                                let r_mult = n1 * n2;
+                                input.value = r_mult;
+                                break;
+                            case('mais'):
+                                let r_mais = n1 + n2;
+                                input.value = r_mais;
+                                break;
+                            case('menos'):
+                                let r_menos = n1 - n2;
+                                input.value = r_menos;
+                                break;
+                        }
+                        acao = '';
+                    }
+                    break;
             }
         }
     </script>
