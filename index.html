@@ -148,7 +148,6 @@
                                 q0 = 0;
                             }
                         }
-                        console.log(n1)
                     }
                     break;
                 case 'x':
@@ -163,7 +162,6 @@
                                 q0 = 0;
                             }
                         }
-                        console.log(n1)
                     }
                     break;
                 case '-':
@@ -178,7 +176,6 @@
                                 q0 = 0;
                             }
                         }
-                        console.log(n1)
                     }
                     break;
                 case '+':
@@ -193,7 +190,6 @@
                                 q0 = 0;
                             }
                         }
-                        console.log(n1)
                     }
                     break;
                 case '.':
@@ -201,7 +197,6 @@
                         input.value += '0' + '.';
                         qp += 1;
                     }
-                    console.log(parseFloat(input.value))
                     if(qp == 0 && parseFloat(input.value) >= 0){
                         input.value += '.';
                         qp += 1;
@@ -264,7 +259,6 @@
                 case '=':
                     if(acao != '' && !isNaN(parseFloat(input.value))){
                         n2 = parseFloat(input.value);
-                        console.log(n2)
                         switch(acao){
                             case('divisão'):
                                 let r_soma = n1 / n2;
