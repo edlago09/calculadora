@@ -201,7 +201,8 @@
                         input.value += '0' + '.';
                         qp += 1;
                     }
-                    if(qp == 0 && parseFloat(input.value) == '0'){
+                    console.log(parseFloat(input.value))
+                    if(qp == 0 && parseFloat(input.value) >= 0){
                         input.value += '.';
                         qp += 1;
                     }
